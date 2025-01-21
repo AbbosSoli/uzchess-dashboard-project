@@ -22,11 +22,11 @@
       "duration": 120
     },
     {
-      "id": "a19a",
-      "courseName": "Ekspert",
-      "description": "Novichok",
-      "lessons": 3,
-      "duration": 120
+      "id": 0,
+      "courseName": "dsafds",
+      "description": "asdf",
+      "lessons": 1,
+      "duration": 2
     }
   ]
 }
