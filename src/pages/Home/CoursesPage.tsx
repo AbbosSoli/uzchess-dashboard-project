@@ -28,7 +28,7 @@ const CoursesPage = () => {
 
 	useEffect(() => {
 		axios
-			.get('https://uzchess-dashboard-project.vercel.app/courses')
+			.get('https://uzchess-dashboard-project.vercel.app/api/courses') // Corrected URL
 			.then(response => {
 				setData(response.data)
 			})
@@ -39,7 +39,10 @@ const CoursesPage = () => {
 
 	const handleAddCourse = (newCourse: Course) => {
 		axios
-			.post('https://uzchess-dashboard-project.vercel.app/courses', newCourse)
+			.post(
+				'https://uzchess-dashboard-project.vercel.app/api/courses',
+				newCourse
+			) // Corrected URL
 			.then(response => {
 				setData(prevData => [...prevData, response.data])
 			})
@@ -51,7 +54,7 @@ const CoursesPage = () => {
 	const handleEditCourse = (updatedCourse: Course) => {
 		axios
 			.put(
-				`https://uzchess-dashboard-project.vercel.app/${updatedCourse.id}`,
+				`https://uzchess-dashboard-project.vercel.app/api/courses/${updatedCourse.id}`, // Corrected URL
 				updatedCourse
 			)
 			.then(() => {
@@ -70,7 +73,7 @@ const CoursesPage = () => {
 		if (window.confirm('Are you sure you want to delete this course?')) {
 			axios
 				.delete(
-					`https://uzchess-dashboard-project.vercel.app/courses/${courseId}`
+					`https://uzchess-dashboard-project.vercel.app/api/courses/${courseId}` // Corrected URL
 				)
 				.then(() => {
 					const updatedCourses = data.filter(course => course.id !== courseId)

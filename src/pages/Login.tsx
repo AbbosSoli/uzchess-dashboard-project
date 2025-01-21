@@ -19,7 +19,9 @@ const Login = () => {
 
 	const mockLoginApi = async (data: LoginFormInputs) => {
 		try {
-			const response = await axios.get('https://uzchess-dashboard-project.vercel.app/users')
+			const response = await axios.get(
+				'https://uzchess-dashboard-project.vercel.app/api/users'
+			)
 
 			console.log('Response:', response)
 
