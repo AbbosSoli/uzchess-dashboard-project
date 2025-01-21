@@ -8,13 +8,6 @@
   ],
   "courses": [
     {
-      "id": "23fa",
-      "courseName": "O'rtacha",
-      "description": "Havaskor o'yinchi",
-      "lessons": 4,
-      "duration": 200
-    },
-    {
       "id": "2b43",
       "courseName": "O'rtacha",
       "description": "Havaskor",
@@ -34,20 +27,6 @@
       "description": "Novichok",
       "lessons": 3,
       "duration": 120
-    },
-    {
-      "id": "4183",
-      "courseName": "hello",
-      "description": "eng zori",
-      "lessons": 12,
-      "duration": 240
-    },
-    {
-      "id": 0,
-      "courseName": "asdf",
-      "description": "asdf",
-      "lessons": 23,
-      "duration": 23
     }
   ]
 }
