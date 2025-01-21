@@ -28,7 +28,7 @@ const CoursesPage = () => {
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:5000/courses')
+			.get('https://uzchess-dashboard-project.vercel.app/courses')
 			.then(response => {
 				setData(response.data)
 			})
@@ -39,7 +39,7 @@ const CoursesPage = () => {
 
 	const handleAddCourse = (newCourse: Course) => {
 		axios
-			.post('http://localhost:5000/courses', newCourse)
+			.post('https://uzchess-dashboard-project.vercel.app/courses', newCourse)
 			.then(response => {
 				setData(prevData => [...prevData, response.data])
 			})
@@ -50,7 +50,10 @@ const CoursesPage = () => {
 
 	const handleEditCourse = (updatedCourse: Course) => {
 		axios
-			.put(`http://localhost:5000/courses/${updatedCourse.id}`, updatedCourse)
+			.put(
+				`https://uzchess-dashboard-project.vercel.app/${updatedCourse.id}`,
+				updatedCourse
+			)
 			.then(() => {
 				setData(prevData =>
 					prevData.map(course =>
@@ -66,7 +69,9 @@ const CoursesPage = () => {
 	const handleDelete = (courseId: number) => {
 		if (window.confirm('Are you sure you want to delete this course?')) {
 			axios
-				.delete(`http://localhost:5000/courses/${courseId}`)
+				.delete(
+					`https://uzchess-dashboard-project.vercel.app/courses/${courseId}`
+				)
 				.then(() => {
 					const updatedCourses = data.filter(course => course.id !== courseId)
 					setData(updatedCourses)
