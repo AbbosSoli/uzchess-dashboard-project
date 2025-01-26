@@ -4,6 +4,7 @@ import { loginSchema, LoginFormInputs } from '../validation/loginSchema'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
+
 const apiUrl = import.meta.env.VITE_API_URL
 
 const Login = () => {
