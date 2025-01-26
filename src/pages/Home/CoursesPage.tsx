@@ -10,7 +10,7 @@ import {
 import { Play, Eye, Pencil, Trash2 } from 'lucide-react'
 import AddNewCourseModal from '../../components/AddNewCourseModal'
 
-const BASE_URL = 'https://my-chess-backend-api.onrender.com/api'
+const apiUrl = import.meta.env.VITE_API_URL
 
 interface Course {
 	id: number
@@ -30,7 +30,7 @@ const CoursesPage = () => {
 
 	useEffect(() => {
 		axios
-			.get(`${BASE_URL}/courses`)
+			.get(`${apiUrl}/courses`)
 			.then(response => {
 				setData(response.data)
 			})
@@ -43,7 +43,7 @@ const CoursesPage = () => {
 		console.log('New course data:', newCourse)
 
 		axios
-			.post(`${BASE_URL}/courses`, newCourse, {
+			.post(`${apiUrl}/courses`, newCourse, {
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -62,7 +62,7 @@ const CoursesPage = () => {
 
 	const handleEditCourse = (updatedCourse: Course) => {
 		axios
-			.put(`${BASE_URL}/courses/${updatedCourse.id}`, updatedCourse)
+			.put(`${apiUrl}/courses/${updatedCourse.id}`, updatedCourse)
 			.then(() => {
 				setData(prevData =>
 					prevData.map(course =>
@@ -78,7 +78,7 @@ const CoursesPage = () => {
 	const handleDelete = (courseId: number) => {
 		if (window.confirm('Are you sure you want to delete this course?')) {
 			axios
-				.delete(`${BASE_URL}/courses/${courseId}`)
+				.delete(`${apiUrl}/courses/${courseId}`)
 				.then(() => {
 					const updatedCourses = data.filter(course => course.id !== courseId)
 					setData(updatedCourses)
