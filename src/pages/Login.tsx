@@ -4,6 +4,7 @@ import { loginSchema, LoginFormInputs } from '../validation/loginSchema'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
+const BASE_URL = 'https://my-chess-backend-api.onrender.com/api'
 
 const Login = () => {
 	const { login } = useAuth()
@@ -19,9 +20,7 @@ const Login = () => {
 
 	const mockLoginApi = async (data: LoginFormInputs) => {
 		try {
-			const response = await axios.get(
-				'https://uzchess-dashboard-project.vercel.app/api/users'
-			)
+			const response = await axios.get(`${BASE_URL}/users`)
 
 			console.log('Response:', response)
 

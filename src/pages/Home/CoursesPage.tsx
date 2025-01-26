@@ -10,6 +10,8 @@ import {
 import { Play, Eye, Pencil, Trash2 } from 'lucide-react'
 import AddNewCourseModal from '../../components/AddNewCourseModal'
 
+const BASE_URL = 'https://my-chess-backend-api.onrender.com/api'
+
 interface Course {
 	id: number
 	courseName: string
@@ -24,11 +26,11 @@ const columnHelper = createColumnHelper<Course>()
 const CoursesPage = () => {
 	const [data, setData] = useState<Course[]>([])
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [editCourse, setEditCourse] = useState<Course | null>(null) // State for editing
+	const [editCourse, setEditCourse] = useState<Course | null>(null)
 
 	useEffect(() => {
 		axios
-			.get('https://uzchess-dashboard-project.vercel.app/api/courses') // Corrected URL
+			.get(`${BASE_URL}/courses`)
 			.then(response => {
 				setData(response.data)
 			})
@@ -38,25 +40,29 @@ const CoursesPage = () => {
 	}, [])
 
 	const handleAddCourse = (newCourse: Course) => {
+		console.log('New course data:', newCourse)
+
 		axios
-			.post(
-				'https://uzchess-dashboard-project.vercel.app/api/courses',
-				newCourse
-			) // Corrected URL
+			.post(`${BASE_URL}/courses`, newCourse, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
 			.then(response => {
 				setData(prevData => [...prevData, response.data])
 			})
 			.catch(error => {
-				console.error('Error adding course:', error)
+				if (error.response) {
+					console.error('Error response from backend:', error.response.data)
+				} else {
+					console.error('Error adding course:', error.message)
+				}
 			})
 	}
 
 	const handleEditCourse = (updatedCourse: Course) => {
 		axios
-			.put(
-				`https://uzchess-dashboard-project.vercel.app/api/courses/${updatedCourse.id}`, // Corrected URL
-				updatedCourse
-			)
+			.put(`${BASE_URL}/courses/${updatedCourse.id}`, updatedCourse)
 			.then(() => {
 				setData(prevData =>
 					prevData.map(course =>
@@ -72,9 +78,7 @@ const CoursesPage = () => {
 	const handleDelete = (courseId: number) => {
 		if (window.confirm('Are you sure you want to delete this course?')) {
 			axios
-				.delete(
-					`https://uzchess-dashboard-project.vercel.app/api/courses/${courseId}` // Corrected URL
-				)
+				.delete(`${BASE_URL}/courses/${courseId}`)
 				.then(() => {
 					const updatedCourses = data.filter(course => course.id !== courseId)
 					setData(updatedCourses)

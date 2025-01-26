@@ -1,5 +1,9 @@
 const Tournaments = () => {
-	return <div>Tournaments</div>
+	return (
+		<div className='mb-4 text-3xl font-bold dark:bg-neutral-900 dark:text-neutral-200'>
+			Tournaments
+		</div>
+	)
 }
 
 export default Tournaments

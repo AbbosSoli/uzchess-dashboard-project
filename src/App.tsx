@@ -15,6 +15,7 @@ import LiveStreams from './pages/Home/LiveStreams'
 import Puzzles from './pages/Home/Puzzles'
 import Teachers from './pages/Home/Teachers'
 import Notifications from './pages/Home/Notifications'
+import Modules from './pages/Home/Modules'
 
 const App = () => {
 	return (
@@ -95,7 +96,7 @@ const App = () => {
 				element={
 					<ProtectedRoute>
 						<Layout>
-							<Tournaments />
+							<Modules />
 						</Layout>
 					</ProtectedRoute>
 				}
